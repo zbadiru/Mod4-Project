@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_161628) do
 
   create_table "phones", force: :cascade do |t|
     t.string "name"
+    t.string "img"
     t.float "price"
     t.boolean "inCart", default: false
     t.integer "count", default: 0

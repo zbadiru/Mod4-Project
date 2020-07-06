@@ -1,0 +1,755 @@
+  [1m[35m (287.9ms)[0m  [1m[35mCREATE DATABASE "phone_shop_development" ENCODING = 'unicode'[0m
+  [1m[35m (80.4ms)[0m  [1m[35mCREATE DATABASE "phone_shop_test" ENCODING = 'unicode'[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7441616828001835080)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200704160757)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (39.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704160757"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrders (20200704160924)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "user_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704160924"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateJoinTables (20200704161509)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "join_tables" ("id" bigserial primary key, "order_id" integer, "phone_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704161509"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePhones (20200704161628)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "phones" ("id" bigserial primary key, "name" character varying, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704161628"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-04 16:34:39.653172"], ["updated_at", "2020-07-04 16:34:39.653172"]]
+  [1m[35m (32.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7441616828001835080)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (29.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "phone_shop_development"[0m
+  [1m[35m (26.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "phone_shop_test"[0m
+  [1m[35m (63.9ms)[0m  [1m[35mCREATE DATABASE "phone_shop_development" ENCODING = 'unicode'[0m
+  [1m[35m (62.4ms)[0m  [1m[35mCREATE DATABASE "phone_shop_test" ENCODING = 'unicode'[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7441616828001835080)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200704160757)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704160757"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrders (20200704160924)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "user_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704160924"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateJoinTables (20200704161509)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "join_tables" ("id" bigserial primary key, "order_id" integer, "phone_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704161509"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePhones (20200704161628)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "phones" ("id" bigserial primary key, "name" character varying, "price" float, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704161628"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-04 16:54:51.800099"], ["updated_at", "2020-07-04 16:54:51.800099"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7441616828001835080)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mPhone Load (0.4ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  [1m[36mJoinTable Load (0.5ms)[0m  [1m[34mSELECT "join_tables".* FROM "join_tables"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "Zack B"], ["password_digest", "$2a$12$Bo7iit6v55Yim9FZ1OIFduDrdPIjfXsVcuccRxQ8qT6IR1snVjX4q"], ["created_at", "2020-07-04 16:57:45.304639"], ["updated_at", "2020-07-04 16:57:45.304639"]]
+  [1m[35m (18.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT "phones".* FROM "phones" WHERE "phones"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.4ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "iPhone 6"], ["price", 150.02], ["created_at", "2020-07-04 16:57:45.358142"], ["updated_at", "2020-07-04 16:57:45.358142"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mOrder Create (0.3ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 1], ["created_at", "2020-07-04 16:57:45.367580"], ["updated_at", "2020-07-04 16:57:45.367580"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mPhone Load (0.5ms)[0m  [1m[34mSELECT "phones".* FROM "phones" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mJoinTable Load (0.4ms)[0m  [1m[34mSELECT "join_tables".* FROM "join_tables" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPhone Load (0.5ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Destroy (0.3ms)[0m  [1m[31mDELETE FROM "phones" WHERE "phones"."id" = $1[0m  [["id", 1]]
+  [1m[35m (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Destroy (0.2ms)[0m  [1m[31mDELETE FROM "orders" WHERE "orders"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJoinTable Load (0.3ms)[0m  [1m[34mSELECT "join_tables".* FROM "join_tables"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.4ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "XiamomiHuawei Mate 10 Pro"], ["price", 780.0], ["created_at", "2020-07-04 17:09:05.803498"], ["updated_at", "2020-07-04 17:09:05.803498"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "HuaweiXiaomi Pocophone F1"], ["price", 249.0], ["created_at", "2020-07-04 17:09:05.807839"], ["updated_at", "2020-07-04 17:09:05.807839"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "AppleiPhone 5C"], ["price", 913.0], ["created_at", "2020-07-04 17:09:05.811140"], ["updated_at", "2020-07-04 17:09:05.811140"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "AppleiPhone SE"], ["price", 995.0], ["created_at", "2020-07-04 17:09:05.814259"], ["updated_at", "2020-07-04 17:09:05.814259"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "XiamomiGoogle Pixel 2 XL"], ["price", 981.0], ["created_at", "2020-07-04 17:09:05.817343"], ["updated_at", "2020-07-04 17:09:05.817343"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "ASUSHuawei P10 Plus"], ["price", 833.0], ["created_at", "2020-07-04 17:09:05.820481"], ["updated_at", "2020-07-04 17:09:05.820481"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "HuaweiiPhone"], ["price", 211.0], ["created_at", "2020-07-04 17:09:05.823892"], ["updated_at", "2020-07-04 17:09:05.823892"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "ASUSOnePlus 5T"], ["price", 866.0], ["created_at", "2020-07-04 17:09:05.827294"], ["updated_at", "2020-07-04 17:09:05.827294"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "DellSamsung Galaxy S4"], ["price", 757.0], ["created_at", "2020-07-04 17:09:05.830800"], ["updated_at", "2020-07-04 17:09:05.830800"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "HPHuawei P Smart"], ["price", 455.0], ["created_at", "2020-07-04 17:09:05.833990"], ["updated_at", "2020-07-04 17:09:05.833990"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "Zack B"], ["password_digest", "$2a$12$RjQEDZBsm25wNjZ2USz0re0PFF6tkucKQV613tPe3G7kGCglZWGHe"], ["created_at", "2020-07-04 17:09:06.046867"], ["updated_at", "2020-07-04 17:09:06.046867"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT "phones".* FROM "phones" WHERE "phones"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "iPhone 6"], ["price", 150.02], ["created_at", "2020-07-04 17:09:06.063073"], ["updated_at", "2020-07-04 17:09:06.063073"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mPhone Load (0.5ms)[0m  [1m[34mSELECT "phones".* FROM "phones" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones" ORDER BY "phones"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones" ORDER BY "phones"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones" ORDER BY "phones"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/phones" for ::1 at 2020-07-04 18:13:37 +0100
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/phones"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2020-07-04 18:13:37 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/phones" for ::1 at 2020-07-04 18:14:59 +0100
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (0.5ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 15ms (Views: 7.6ms | ActiveRecord: 4.5ms | Allocations: 7528)
+
+
+Started GET "/orders" for ::1 at 2020-07-04 18:17:51 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/orders"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/order/1" for ::1 at 2020-07-04 18:17:58 +0100
+  
+ActionController::RoutingError (uninitialized constant OrderController
+Did you mean?  OrdersController):
+  
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/order/1" for ::1 at 2020-07-04 18:18:02 +0100
+  
+ActionController::RoutingError (uninitialized constant OrderController
+Did you mean?  OrdersController):
+  
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/orders/1" for ::1 at 2020-07-04 18:18:10 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/orders/1"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/orders/1" for ::1 at 2020-07-04 18:18:30 +0100
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/orders_controller.rb:37:in `set_order'
+Completed 404 Not Found in 9ms (ActiveRecord: 3.1ms | Allocations: 3326)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Order with 'id'=1):
+  
+app/controllers/orders_controller.rb:37:in `set_order'
+Started GET "/users/1" for ::1 at 2020-07-04 18:18:55 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:36:in `set_user'
+Completed 404 Not Found in 5ms (ActiveRecord: 2.2ms | Allocations: 1929)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:36:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users/2" for ::1 at 2020-07-04 18:19:25 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:36:in `set_user'
+Completed 500 Internal Server Error in 132ms (ActiveRecord: 0.3ms | Allocations: 75002)
+
+
+  
+NameError (undefined local variable or method `user' for #<UsersController:0x00007fc976958a48>
+Did you mean?  super):
+  
+app/controllers/users_controller.rb:5:in `show'
+Started GET "/users/2" for ::1 at 2020-07-04 18:20:55 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:36:in `set_user'
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 3.1ms | Allocations: 5138)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 10:04:20 +0100
+  [1m[35m (10.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (0.6ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 19ms (Views: 7.3ms | ActiveRecord: 5.2ms | Allocations: 7444)
+
+
+Started GET "/favicon.ico" for ::1 at 2020-07-06 10:04:20 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/phones" for ::1 at 2020-07-06 14:18:02 +0100
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (5.0ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 8ms (Views: 2.4ms | ActiveRecord: 5.0ms | Allocations: 2169)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:19:34 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.5ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.5ms | Allocations: 2064)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:20:07 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.6ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.6ms | Allocations: 2063)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:20:16 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.3ms | Allocations: 2045)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:20:25 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 2045)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:21:48 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.4ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 16ms (Views: 7.3ms | ActiveRecord: 4.0ms | Allocations: 7448)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:39:16 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.7ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 22ms (Views: 21.4ms | ActiveRecord: 0.7ms | Allocations: 2143)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:40:13 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.3ms | Allocations: 2064)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:41:37 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (2.9ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 8ms (Views: 4.5ms | ActiveRecord: 2.9ms | Allocations: 2065)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:41:44 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.4ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.4ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:42:02 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (9.2ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 14ms (Views: 4.1ms | ActiveRecord: 9.2ms | Allocations: 2064)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:42:06 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.5ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.5ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:42:19 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:54:28 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.7ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.7ms | Allocations: 2128)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:54:42 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (3.6ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 7ms (Views: 3.6ms | ActiveRecord: 3.6ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 14:55:33 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (15.1ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 23ms (Views: 7.6ms | ActiveRecord: 15.1ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:00:52 +0100
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (0.4ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.4ms | Allocations: 2127)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:00:55 +0100
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.2ms | Allocations: 2044)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:01:34 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:01:56 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (3.4ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 10ms (Views: 6.0ms | ActiveRecord: 3.4ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:02:24 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:04:04 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.5ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.5ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:07:10 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:07:14 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:18:18 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (1.0ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 1.0ms | Allocations: 2129)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:19:13 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:19:17 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (2.4ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 2.4ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:22:15 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (2.0ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 2.0ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:25:46 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.4ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.4ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:28:20 +0100
+Processing by PhonesController#index as */*
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.3ms | Allocations: 2046)
+
+
+Started GET "/phones" for ::1 at 2020-07-06 15:29:22 +0100
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  ↳ app/controllers/phones_controller.rb:6:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 2044)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (48.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "phone_shop_development"[0m
+  [1m[35m (32.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "phone_shop_test"[0m
+  [1m[35m (147.0ms)[0m  [1m[35mCREATE DATABASE "phone_shop_development" ENCODING = 'unicode'[0m
+  [1m[35m (71.1ms)[0m  [1m[35mCREATE DATABASE "phone_shop_test" ENCODING = 'unicode'[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7441616828001835080)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200704160757)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (28.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704160757"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrders (20200704160924)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "user_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704160924"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateJoinTables (20200704161509)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "join_tables" ("id" bigserial primary key, "order_id" integer, "phone_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704161509"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePhones (20200704161628)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "phones" ("id" bigserial primary key, "name" character varying, "price" float, "inCart" boolean DEFAULT FALSE, "count" integer DEFAULT 0, "total" float DEFAULT 0.0, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200704161628"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-06 14:35:00.277981"], ["updated_at", "2020-07-06 14:35:00.277981"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7441616828001835080)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones"[0m
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders"[0m
+  [1m[36mJoinTable Load (0.4ms)[0m  [1m[34mSELECT "join_tables".* FROM "join_tables"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.6ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "XiamomiSamsung Galaxy S8 Plus"], ["price", 301.0], ["created_at", "2020-07-06 14:35:56.920947"], ["updated_at", "2020-07-06 14:35:56.920947"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "ASUSXiaomi Mi 8 SE"], ["price", 567.0], ["created_at", "2020-07-06 14:35:56.925323"], ["updated_at", "2020-07-06 14:35:56.925323"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "OnePlusiPhone 6 / 6 Plus"], ["price", 293.0], ["created_at", "2020-07-06 14:35:56.928569"], ["updated_at", "2020-07-06 14:35:56.928569"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "HPiPhone 5S"], ["price", 708.0], ["created_at", "2020-07-06 14:35:56.931754"], ["updated_at", "2020-07-06 14:35:56.931754"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "LenovoXiaomi Redmi Note 6 Pro"], ["price", 909.0], ["created_at", "2020-07-06 14:35:56.935036"], ["updated_at", "2020-07-06 14:35:56.935036"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "ASUSXiaomi Mi 8 SE"], ["price", 923.0], ["created_at", "2020-07-06 14:35:56.938261"], ["updated_at", "2020-07-06 14:35:56.938261"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.3ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "XiamomiHuawei Mate 20 Pro"], ["price", 690.0], ["created_at", "2020-07-06 14:35:56.941365"], ["updated_at", "2020-07-06 14:35:56.941365"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "ASUSXiaomi Mi 8"], ["price", 297.0], ["created_at", "2020-07-06 14:35:56.944459"], ["updated_at", "2020-07-06 14:35:56.944459"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "HuaweiOnePlus 6"], ["price", 692.0], ["created_at", "2020-07-06 14:35:56.947490"], ["updated_at", "2020-07-06 14:35:56.947490"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.2ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "LenovoSamsung Galaxy S8 Plus"], ["price", 284.0], ["created_at", "2020-07-06 14:35:56.950827"], ["updated_at", "2020-07-06 14:35:56.950827"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "Zack B"], ["password_digest", "$2a$12$auOM4w7lZKXHU0NqTmrQNORUbhb9XxPaqmcRfg4ISO20K6m97E.X6"], ["created_at", "2020-07-06 14:35:57.160326"], ["updated_at", "2020-07-06 14:35:57.160326"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPhone Load (0.1ms)[0m  [1m[34mSELECT "phones".* FROM "phones" WHERE "phones"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Create (0.3ms)[0m  [1m[32mINSERT INTO "phones" ("name", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "iPhone 6"], ["price", 150.02], ["created_at", "2020-07-06 14:35:57.181780"], ["updated_at", "2020-07-06 14:35:57.181780"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["user_id", 1], ["created_at", "2020-07-06 14:35:57.203133"], ["updated_at", "2020-07-06 14:35:57.203133"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT "phones".* FROM "phones" ORDER BY "phones"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
